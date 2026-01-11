@@ -11,27 +11,37 @@ st.set_page_config(
 )
 
 # --------------------------------------------------
-# LIGHT PROFESSIONAL CSS
+# SOFT LIGHT FINTECH THEME
 # --------------------------------------------------
 st.markdown("""
 <style>
 
-/* App background */
+/* Soft gradient background */
 .stApp {
-    background-color: #f8fafc;
+    background: linear-gradient(120deg, #f8fafc, #eef2ff);
     color: #0f172a;
 }
 
-/* Main title */
+/* Page title */
 h1 {
-    color: #0f172a;
     font-weight: 700;
+    color: #0f172a;
 }
 
-/* Section headers */
+/* Section title */
 h3 {
     color: #1e293b;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+/* Card container */
+.card {
+    background-color: #ffffff;
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
 }
 
 /* Labels */
@@ -40,61 +50,57 @@ label {
     color: #334155 !important;
 }
 
-/* Input boxes */
+/* Inputs */
 div[data-baseweb="input"] input,
 div[data-baseweb="select"] > div {
     background-color: #ffffff !important;
+    border-radius: 10px !important;
+    border: 1px solid #c7d2fe !important;
     color: #0f172a !important;
-    border-radius: 8px !important;
-    border: 1px solid #cbd5e1 !important;
 }
 
-/* Divider */
-hr {
-    border: none;
-    height: 1px;
-    background: #e2e8f0;
-}
-
-/* Metric cards */
-.metric-card {
-    background-color: #ffffff;
-    border-radius: 14px;
-    padding: 20px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-    text-align: center;
-}
-
-/* Metric label */
-.metric-label {
-    font-size: 14px;
-    color: #64748b;
-}
-
-/* Metric value */
-.metric-value {
-    font-size: 30px;
-    font-weight: 700;
-    color: #2563eb;
+/* Disabled input */
+input:disabled {
+    background-color: #f1f5f9 !important;
+    font-weight: 600;
 }
 
 /* Button */
 .stButton > button {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
     color: white;
     font-size: 16px;
     font-weight: 600;
-    padding: 10px 26px;
-    border-radius: 10px;
+    padding: 10px 30px;
+    border-radius: 12px;
     border: none;
 }
 
 .stButton > button:hover {
-    background-color: #1d4ed8;
-    transform: scale(1.02);
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+    transform: scale(1.03);
 }
 
+/* Result cards */
+.result-card {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.result-label {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.result-value {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2563eb;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -102,13 +108,12 @@ hr {
 # HEADER
 # --------------------------------------------------
 st.title("📊 Lauki Finance – Credit Risk Modelling")
-st.markdown("##### Credit Scoring & Default Probability Assessment")
-
-st.divider()
+st.markdown("##### Intelligent Credit Scoring & Default Risk Assessment")
 
 # --------------------------------------------------
-# INPUT SECTION
+# INPUT CARD
 # --------------------------------------------------
+st.markdown("<div class='card'>", unsafe_allow_html=True)
 st.markdown("### 🧾 Applicant & Loan Information")
 
 row1 = st.columns(3)
@@ -123,15 +128,15 @@ with row1[1]:
     income = st.number_input("Annual Income", min_value=0, value=1_200_000)
 
 with row1[2]:
-    loan_amount = st.number_input("Loan Amount", min_value=0, value=2_560_000)
+    loan_amount = st.number_input("Loan Amount", min_value=0, value=100_000)
 
 loan_to_income_ratio = loan_amount / income if income > 0 else 0
 
 with row2[0]:
-    st.markdown("**Loan to Income Ratio**")
-    st.markdown(
-        f"<div class='metric-value'>{loan_to_income_ratio:.2f}</div>",
-        unsafe_allow_html=True
+    st.number_input(
+        "Loan to Income Ratio",
+        value=round(loan_to_income_ratio, 2),
+        disabled=True
     )
 
 with row2[1]:
@@ -158,11 +163,13 @@ with row4[1]:
 with row4[2]:
     loan_type = st.selectbox("Loan Type", ["Unsecured", "Secured"])
 
-st.divider()
+st.markdown("</div>", unsafe_allow_html=True)
 
 # --------------------------------------------------
-# PREDICTION OUTPUT
+# ACTION
 # --------------------------------------------------
+st.markdown("<br>", unsafe_allow_html=True)
+
 if st.button("🔍 Calculate Credit Risk"):
     probability, credit_score, rating = predict(
         age, income, loan_amount, loan_tenure_months,
@@ -171,6 +178,7 @@ if st.button("🔍 Calculate Credit Risk"):
         residence_type, loan_purpose, loan_type
     )
 
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
     st.markdown("### 📈 Risk Assessment Results")
 
     c1, c2, c3 = st.columns(3)
@@ -178,9 +186,9 @@ if st.button("🔍 Calculate Credit Risk"):
     with c1:
         st.markdown(
             f"""
-            <div class="metric-card">
-                <div class="metric-label">Default Probability</div>
-                <div class="metric-value">{probability:.2%}</div>
+            <div class="result-card">
+                <div class="result-label">Default Probability</div>
+                <div class="result-value">{probability:.2%}</div>
             </div>
             """, unsafe_allow_html=True
         )
@@ -188,9 +196,9 @@ if st.button("🔍 Calculate Credit Risk"):
     with c2:
         st.markdown(
             f"""
-            <div class="metric-card">
-                <div class="metric-label">Credit Score</div>
-                <div class="metric-value">{credit_score}</div>
+            <div class="result-card">
+                <div class="result-label">Credit Score</div>
+                <div class="result-value">{credit_score}</div>
             </div>
             """, unsafe_allow_html=True
         )
@@ -198,9 +206,11 @@ if st.button("🔍 Calculate Credit Risk"):
     with c3:
         st.markdown(
             f"""
-            <div class="metric-card">
-                <div class="metric-label">Risk Rating</div>
-                <div class="metric-value">{rating}</div>
+            <div class="result-card">
+                <div class="result-label">Risk Rating</div>
+                <div class="result-value">{rating}</div>
             </div>
             """, unsafe_allow_html=True
         )
+
+    st.markdown("</div>", unsafe_allow_html=True)
