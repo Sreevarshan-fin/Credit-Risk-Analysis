@@ -11,82 +11,90 @@ st.set_page_config(
 )
 
 # --------------------------------------------------
-# CUSTOM CSS – FINTECH PROFESSIONAL THEME
+# LIGHT PROFESSIONAL CSS
 # --------------------------------------------------
 st.markdown("""
 <style>
-/* Main background */
+
+/* App background */
 .stApp {
-    background: linear-gradient(135deg, #0f172a, #020617);
-    color: #e5e7eb;
+    background-color: #f8fafc;
+    color: #0f172a;
 }
 
-/* Title */
+/* Main title */
 h1 {
-    color: #f8fafc;
+    color: #0f172a;
     font-weight: 700;
-    letter-spacing: 0.5px;
 }
 
 /* Section headers */
 h3 {
-    color: #cbd5f5;
+    color: #1e293b;
     margin-bottom: 10px;
 }
 
-/* Input labels */
+/* Labels */
 label {
-    color: #cbd5e1 !important;
     font-size: 14px !important;
+    color: #334155 !important;
 }
 
 /* Input boxes */
 div[data-baseweb="input"] input,
 div[data-baseweb="select"] > div {
-    background-color: #020617 !important;
-    color: #f8fafc !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
     border-radius: 8px !important;
-    border: 1px solid #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Divider */
+hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
 }
 
 /* Metric cards */
 .metric-card {
-    background: linear-gradient(135deg, #020617, #020617);
+    background-color: #ffffff;
     border-radius: 14px;
     padding: 20px;
-    border: 1px solid #334155;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
     text-align: center;
 }
 
-/* Metric values */
-.metric-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #38bdf8;
-}
-
-/* Metric labels */
+/* Metric label */
 .metric-label {
     font-size: 14px;
-    color: #94a3b8;
+    color: #64748b;
+}
+
+/* Metric value */
+.metric-value {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2563eb;
 }
 
 /* Button */
 .stButton > button {
-    background: linear-gradient(135deg, #2563eb, #38bdf8);
-    color: #020617;
+    background-color: #2563eb;
+    color: white;
     font-size: 16px;
     font-weight: 600;
-    padding: 10px 24px;
+    padding: 10px 26px;
     border-radius: 10px;
     border: none;
 }
 
 .stButton > button:hover {
-    transform: scale(1.03);
-    background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+    background-color: #1d4ed8;
+    transform: scale(1.02);
 }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -94,14 +102,14 @@ div[data-baseweb="select"] > div {
 # HEADER
 # --------------------------------------------------
 st.title("📊 Lauki Finance – Credit Risk Modelling")
-st.markdown("##### Enterprise Credit Scoring & Default Risk Assessment Engine")
+st.markdown("##### Credit Scoring & Default Probability Assessment")
 
 st.divider()
 
 # --------------------------------------------------
 # INPUT SECTION
 # --------------------------------------------------
-st.markdown("### 🧾 Applicant & Loan Details")
+st.markdown("### 🧾 Applicant & Loan Information")
 
 row1 = st.columns(3)
 row2 = st.columns(3)
@@ -121,7 +129,10 @@ loan_to_income_ratio = loan_amount / income if income > 0 else 0
 
 with row2[0]:
     st.markdown("**Loan to Income Ratio**")
-    st.markdown(f"<div class='metric-value'>{loan_to_income_ratio:.2f}</div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='metric-value'>{loan_to_income_ratio:.2f}</div>",
+        unsafe_allow_html=True
+    )
 
 with row2[1]:
     loan_tenure_months = st.number_input("Loan Tenure (Months)", min_value=1, value=36)
@@ -150,7 +161,7 @@ with row4[2]:
 st.divider()
 
 # --------------------------------------------------
-# PREDICTION SECTION
+# PREDICTION OUTPUT
 # --------------------------------------------------
 if st.button("🔍 Calculate Credit Risk"):
     probability, credit_score, rating = predict(
@@ -162,9 +173,9 @@ if st.button("🔍 Calculate Credit Risk"):
 
     st.markdown("### 📈 Risk Assessment Results")
 
-    col1, col2, col3 = st.columns(3)
+    c1, c2, c3 = st.columns(3)
 
-    with col1:
+    with c1:
         st.markdown(
             f"""
             <div class="metric-card">
@@ -174,7 +185,7 @@ if st.button("🔍 Calculate Credit Risk"):
             """, unsafe_allow_html=True
         )
 
-    with col2:
+    with c2:
         st.markdown(
             f"""
             <div class="metric-card">
@@ -184,7 +195,7 @@ if st.button("🔍 Calculate Credit Risk"):
             """, unsafe_allow_html=True
         )
 
-    with col3:
+    with c3:
         st.markdown(
             f"""
             <div class="metric-card">
