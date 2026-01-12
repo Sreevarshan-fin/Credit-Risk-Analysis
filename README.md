@@ -3,7 +3,7 @@
 
 This project builds an interpretable credit risk model for an NBFC using historical loan data to estimate probability of default and support scalable, data-driven credit decisions.
 
-🔗 Live Streamlit App: https://credit-risk-analysis-jj3vtj43niyqoxbokhujxx.streamlit.app/
+**[![Open in Streamlit](https://img.shields.io/badge/Launch%20App-Streamlit-%23FF4B4B?logo=streamlit&logoColor=white&style=for-the-badge&labelColor=FF4B4B)](https://credit-risk-analysis-jj3vtj43niyqoxbokhujxx.streamlit.app/)**  
 
 ## The Story Behind the Project
 
