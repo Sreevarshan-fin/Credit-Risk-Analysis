@@ -3,6 +3,8 @@
 
 This project builds an interpretable credit risk model for an NBFC using historical loan data to estimate probability of default and support scalable, data-driven credit decisions.
 
+🔗 Live Streamlit App: https://credit-risk-analysis-jj3vtj43niyqoxbokhujxx.streamlit.app/
+
 ## The Story Behind the Project
 
 Lauki Finance is an NBFC that focuses on lending to customers who are often excluded by traditional banks. While this helps expand financial access, it also exposes the business to higher credit risk. At the time of this project, credit evaluation at Lauki Finance relied heavily on manual judgment. As loan applications increased, this approach became slow, inconsistent, and difficult to scale, leading to delays in decisions and increased exposure to defaults.
