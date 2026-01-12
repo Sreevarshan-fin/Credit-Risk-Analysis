@@ -89,8 +89,7 @@ Instead of directly approving or rejecting loans, the final model produces **int
 
 ---
 
-## Final Outcome of Phase 1
-
+## Final Outcome 
 The result of Phase 1 is a validated, industry-aligned credit risk model that:
 
 * Accurately ranks customers by default risk
