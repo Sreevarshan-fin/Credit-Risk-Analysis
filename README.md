@@ -35,18 +35,18 @@ Rather than relying on a single algorithm, multiple models were explored to comp
 ---
 ## Project Structure
 
-'''
+```
 credit-risk-model/
 │
-├── credit_risk_model.ipynb   # Exploratory analysis, feature engineering, and model experiments
-├── main.py                   # Entry point for running predictions / application logic
-├── prediction_helper.py      # Helper functions for data preprocessing and inference
-├── model_data.joblib         # Trained model and preprocessing artifacts
+├── credit_risk_model.ipynb   # Data exploration, feature engineering, and model experimentation
+├── main.py                  # Entry point for executing predictions and application logic
+├── prediction_helper.py     # Reusable preprocessing and inference utilities
+├── model_data.joblib        # Trained model and associated preprocessing artifacts
 │
-├── README.md                 # Project overview and system documentation
-├── requirements.txt          # Python dependencies
-└── .gitignore                # Files excluded from version control
-'''
+├── README.md                # System overview and project documentation
+├── requirements.txt         # Project dependencies
+└── .gitignore               # Files excluded from version control
+```
 
 ## Data and Validation Strategy
 
