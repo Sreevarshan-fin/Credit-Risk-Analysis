@@ -33,6 +33,20 @@ To solve this, historical loan data from Lauki Finance was used, covering custom
 Rather than relying on a single algorithm, multiple models were explored to compare performance and stability. The emphasis throughout was on **risk ranking quality**, not just prediction accuracy.
 
 ---
+## Project Structure
+
+'''
+credit-risk-model/
+│
+├── credit_risk_model.ipynb   # Exploratory analysis, feature engineering, and model experiments
+├── main.py                   # Entry point for running predictions / application logic
+├── prediction_helper.py      # Helper functions for data preprocessing and inference
+├── model_data.joblib         # Trained model and preprocessing artifacts
+│
+├── README.md                 # Project overview and system documentation
+├── requirements.txt          # Python dependencies
+└── .gitignore                # Files excluded from version control
+'''
 
 ## Data and Validation Strategy
 
